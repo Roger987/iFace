@@ -15,6 +15,7 @@ public class iFace{
 		java.util.ArrayList<Usuarios> users = new java.util.ArrayList<Usuarios>();
 		
 		while(input != 0) {
+
 			
 			input = scanner.nextInt();
 			
@@ -53,9 +54,9 @@ public class iFace{
 					
 					if(password.equals(users.get(id).getPassword())){
 						System.out.println("\nHello " + users.get(id).name + "!\n");
-						System.out.println("\nChoose an option:\n1 - Edit my profile\n2 - Add a new friend\n3 - Accept a new friend\n4 - Send a message\n5 - Read your messages\n6 - Create a community\n7 - Add a new person to your community\n8 - \n9 - Show my profile\n10 - Delete your account\n11 - Logout\n\n");
+						System.out.println("\nChoose an option:\n1 - Edit my profile\n2 - Add a new friend\n3 - Accept a new friend\n4 - Show my profile\n5 - Send a message\n6 - Read your messages\n7 - Create a community\n8 - Add a new person to your community\n9 - Retrieve information\n10 - Delete your account\n11 - Logout\n\n");
 						
-						int inputcase2 = -1, friendx = 0, indexfriends = 0;
+						int inputcase2 = -1;
 						
 						while(inputcase2 != 11) {
 							
@@ -80,21 +81,21 @@ public class iFace{
 										
 										if(friendname.equals(users.get(i).name)) {
 											users.get(i).AddFriend(users.get(id).name);
-											friendx++;
 											break;
 										}
 										
 									}
 									
-									
+									break;
+								
 								case 3:
 									
 									int j;
-									System.out.println("People who wants to be your friends\nPress 1 to accept and 2 to decline\n\n");
+									System.out.println("People who want to be your friend\nPress 1 to accept and 2 to decline\n\n");
 									
-									for(i = 0; i < friendx; i++) {
+									for(i = 0; i < users.get(id).newfriends.size(); i++) {
 										
-										System.out.println(users.get(id).newfriends.get(i));
+										System.out.println("\n\n" + users.get(id).newfriends.get(i) + " wants to be your friend! Accept?\n\n");
 										
 										int accept = scanner.nextInt();
 										
@@ -105,15 +106,35 @@ public class iFace{
 											for(j = 0; j < num; j++) {
 												if(users.get(id).newfriends.get(i).equals(users.get(j).name)) {
 													users.get(j).friends.add(users.get(id).name);
+													System.out.println("You and " + users.get(id).newfriends.get(i) + " are friends now!");
 												}
-												indexfriends++;
 											}
 											
+											users.get(id).newfriends.remove(i);
+										}
+										
+										else {
+											
+											users.get(id).newfriends.remove(i);
+											System.out.println("Declined");
 										}
 									}
+									
 									break;
+								
+								case 4:
+								
+									users.get(id).ShowProfile();
+									
+									break;
+									
+								case 10:
+									
+									users.remove(id);
+									
 							}
-						
+							
+							System.out.println("\nChoose an option:\n1 - Edit my profile\n2 - Add a new friend\n3 - Accept a new friend\n4 - Show my profile\n5 - Send a message\n6 - Read your messages\n7 - Create a community\n8 - Add a new person to your community\n9 - Retrieve information\n10 - Delete your account\n11 - Logout\n\n");
 						}
 					}
 					 else {
@@ -121,11 +142,9 @@ public class iFace{
 					 }
 					
 					break; 
-		
 			}
 			
 			System.out.println("\n\nChoose an option:\n0 - Leave the page\n1 - Create new account\n2 - Login\n\n");
-			
 		}
 		
 		scanner.close();

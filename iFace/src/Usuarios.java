@@ -47,12 +47,25 @@ public class Usuarios{
 		System.out.println("Nacionality:");
 		nacionality = scanner.nextLine();
 		
+		return;
+		
 	}
 	
 	public void AddFriend(String yourname) {
 		String message = yourname;
 		newfriends.add(message);
 		System.out.println("Done!");
+	}
+	
+	public void ShowProfile() {
+		int i;
+		System.out.println(name.toUpperCase());
+		System.out.println("------------------------------");
+		System.out.println(age + " years\nLives in " + city + "       He/She is " + nacionality);
+		System.out.println("Friends list:");
+		for(i = 0; i < friends.size(); i++) {
+			System.out.println(friends.get(i));
+		}
 	}
 	
 	public void SendMessage() {
