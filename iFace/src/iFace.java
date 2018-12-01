@@ -128,14 +128,20 @@ public class iFace{
 									
 									break;
 									
+								case 5:
+									
+									users.get(id).SendMessage(users);
+									
+									break;
+									
 								case 7:
 									
-									Community community = new Community();
-									community.CreateNewCommunity(users.get(id).name);
+									users.get(id).CreateCommunity();
 									break;
 									
 								case 8:
 									
+									users.get(id).AddCommunity(users);
 									
 								case 10:
 									

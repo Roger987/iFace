@@ -28,16 +28,5 @@ public class Community{
 		
 	}
 	
-	public void AddToCommunity(String creatorname, String newmember, ArrayList creatorfriends) {
-		
-		System.out.println("Hello " + creatorname + "! Type the name of the friend that you want to add to your community  " + communityname);
-		
-		Scanner scanner = new Scanner(System.in);
-		
-		int i = 0;
-		
-	
-	}
-	
 	
 }

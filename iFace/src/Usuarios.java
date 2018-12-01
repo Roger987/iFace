@@ -8,10 +8,12 @@ public class Usuarios{
 	public int id;
 	public ArrayList<String> friends = new ArrayList<String>();
 	public ArrayList<String> newfriends = new ArrayList<String>();
-	private ArrayList<String> messages = new ArrayList<String>();
 	public int age;
 	public String city;
 	public String nacionality;
+	public Community mycommunity;
+	private Messages mymessages;
+	public ArrayList<String> mycommunities = new ArrayList<String>();
 	
 	
 	public void CreateNewAccount() {
@@ -63,7 +65,7 @@ public class Usuarios{
 		int i;
 		System.out.println(name.toUpperCase());
 		System.out.println("------------------------------");
-		System.out.println(age + " years\nLives in " + city + "       He/She is " + nacionality);
+		System.out.println(age + " years\n" + city + "     " + nacionality);
 		System.out.println("Friends list:");
 		for(i = 0; i < friends.size(); i++) {
 			System.out.println(friends.get(i));
@@ -71,8 +73,63 @@ public class Usuarios{
 	}
 	
 	
-	public void SendMessage() {
+	public void CreateCommunity() {
+		Community community = new Community();
+		community.CreateNewCommunity(this.name);
+		mycommunity = community;
+	}
+	
+	
+	public void AddCommunity(ArrayList<Usuarios> u) {
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		int i;
+		
+		System.out.println("Type the name of the user who you wants to add to your community:");
+		
+		String newname = scanner.nextLine();
+		
+		for(i = 0; i < u.size(); i++) {
+			if(newname.equals(u.get(i).name)) {
+				mycommunity.communityusers.add(newname);
+				u.get(i).mycommunities.add(mycommunity.communityname);
+				System.out.println(newname + " add to your community!");
+			}
+			
+		}
+		
 		
 	}
 	
+	
+	public void SendMessage(ArrayList<Usuarios> u) {
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		Messages message = new Messages();
+		
+		int i;
+		
+		System.out.println("Type the name of the user who you wants to send a message:");
+		
+		String newname = scanner.nextLine();
+		
+		for(i = 0; i < u.size(); i++) {
+			
+			if(newname.equals(this.friends.get(i))) {
+				
+				message.newTalk(newname);
+				
+			}
+		}
+	}
+
+
+	
 }
+
+
+
+
+
