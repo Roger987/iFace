@@ -128,9 +128,19 @@ public class iFace{
 									
 									break;
 									
+								case 7:
+									
+									Community community = new Community();
+									community.CreateNewCommunity(users.get(id).name);
+									break;
+									
+								case 8:
+									
+									
 								case 10:
 									
 									users.remove(id);
+									break;
 									
 							}
 							

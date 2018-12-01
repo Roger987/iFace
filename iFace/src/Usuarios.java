@@ -21,7 +21,7 @@ public class Usuarios{
 		System.out.println("Login:");
 		login = scanner.nextLine();
 		
-		System.out.println("User namer:");
+		System.out.println("User name:");
 		name = scanner.nextLine();
 		
 		System.out.println("Password:");
@@ -29,9 +29,11 @@ public class Usuarios{
 		
 	}
 	
+	
 	public String getPassword() {
 		return this.password;
 	}
+	
 	
 	public void EditProfile() {
 		
@@ -47,15 +49,15 @@ public class Usuarios{
 		System.out.println("Nacionality:");
 		nacionality = scanner.nextLine();
 		
-		return;
-		
 	}
+	
 	
 	public void AddFriend(String yourname) {
 		String message = yourname;
 		newfriends.add(message);
 		System.out.println("Done!");
 	}
+	
 	
 	public void ShowProfile() {
 		int i;
@@ -68,7 +70,9 @@ public class Usuarios{
 		}
 	}
 	
+	
 	public void SendMessage() {
 		
 	}
+	
 }
