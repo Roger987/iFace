@@ -38,27 +38,33 @@ public class iFace{
 				
 				case 2:
 					
-					int i, id = 0;
+					int i, id = 0, flag0 = 0;
 					String password = null;
 					System.out.println("Login:");
 					String login = scanner.nextLine();
 					
-					for(i = 0; i < num; i++) {
+					for(i = 0; i < users.size(); i++) {
 						if(login.equals(users.get(i).login)) {
 							id = i;
 							System.out.println("Password:");
 							password = scanner.nextLine();
+							flag0++;
 							break;
 						}
 					}
 					
-					if(password.equals(users.get(id).getPassword())){
+					if(flag0 == 0) {
+						System.out.println("Sorry! Not found! Try again!\n");
+						break;
+					}
+					
+					else if(password.equals(users.get(id).getPassword())){
 						System.out.println("\nHello " + users.get(id).name + "!\n");
-						System.out.println("\nChoose an option:\n1 - Edit my profile\n2 - Add a new friend\n3 - Accept a new friend\n4 - Show my profile\n5 - Send a message\n6 - Read your messages\n7 - Create a community\n8 - Add a new person to your community\n9 - Retrieve information\n10 - Delete your account\n11 - Logout\n\n");
+						System.out.println("\nChoose an option:\n1 - Edit my profile\n2 - Add a new friend\n3 - Accept a new friend\n4 - Show my profile\n5 - Show another member profile\n6 - Show a community\n7 - Send a message\n8 - Read your messages\n9 - Create a community\n10 - Add a new person to your community\n11 - Delete your account\n12 - Logout\n\n");
 						
 						int inputcase2 = -1;
 						
-						while(inputcase2 != 11) {
+						while(inputcase2 != 12) {
 							
 							inputcase2 = scanner.nextInt();
 							scanner.nextLine();
@@ -73,17 +79,24 @@ public class iFace{
 								
 								case 2:
 									
+									int flag = 0;
+									
 									System.out.println("\nType your friend's user name:\n");
 									
 									String friendname = scanner.nextLine();
 									
-									for(i = 0; i < num; i++) {
+									for(i = 0; i < users.size(); i++) {
 										
 										if(friendname.equals(users.get(i).name)) {
 											users.get(i).AddFriend(users.get(id).name);
+											flag++;
 											break;
 										}
 										
+									}
+									
+									if(flag == 0) {
+										System.out.println("Sorry! Not found!\n");
 									}
 									
 									break;
@@ -130,27 +143,73 @@ public class iFace{
 									
 								case 5:
 									
-									users.get(id).SendMessage(users);
+									int flag2 = 0;
+									
+									System.out.println("Type the name of the member that you're looking for:");
+									
+									String member = scanner.nextLine();
+									
+									for(i = 0; i < users.size(); i++) {
+										if(member.equals(users.get(i).name)) {
+											users.get(i).ShowProfile();
+											flag2++;
+										}
+									}
+									
+									if(flag2 == 0) {
+										System.out.println("Sorry! Not found!\n");
+									}
+									
+									break;
+									
+								case 6:
+									
+									int flag3 = 0;
+									
+									System.out.println("Type the name of the community that you're looking for:");
+									
+									String com = scanner.nextLine();
+									
+									for(i = 0; i < users.size(); i++) {
+										if(users.get(i).mycommunity != null && com.equals(users.get(i).mycommunity.communityname)) {
+											users.get(i).mycommunity.ShowCommunity();
+											flag3++;
+										}
+									}
+									
+									if(flag3 == 0) {
+										System.out.println("Sorry! Not found!\n");
+									}
 									
 									break;
 									
 								case 7:
 									
-									users.get(id).CreateCommunity();
+									users.get(id).SendMessage(users);
 									break;
 									
 								case 8:
+									break;
 									
-									users.get(id).AddCommunity(users);
+								case 9:
+									
+									users.get(id).CreateCommunity();
+									break;
 									
 								case 10:
 									
-									users.remove(id);
+									users.get(id).AddCommunity(users);
 									break;
 									
+								case 11:
+									
+									users.remove(id);
+									System.out.println("Removed from iFace!");
+									inputcase2 = 12;
+									break;									
 							}
 							
-							System.out.println("\nChoose an option:\n1 - Edit my profile\n2 - Add a new friend\n3 - Accept a new friend\n4 - Show my profile\n5 - Send a message\n6 - Read your messages\n7 - Create a community\n8 - Add a new person to your community\n9 - Retrieve information\n10 - Delete your account\n11 - Logout\n\n");
+							System.out.println("\nChoose an option:\n1 - Edit my profile\n2 - Add a new friend\n3 - Accept a new friend\n4 - Show my profile\n5 - Show another member profile\n6 - Show a community\n7 - Send a message\n8 - Read your messages\n9 - Create a community\n10 - Add a new person to your community\n11 - Delete your account\n12 - Logout\n\n");
 						}
 					}
 					 else {

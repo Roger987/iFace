@@ -10,7 +10,7 @@ public class Messages{
 		return this.messages;
 	}
 	
-	public void newTalk(String name) {
+	public void newTalk(String name, String myname) {
 		
 		messagename = name;
 		
@@ -20,7 +20,7 @@ public class Messages{
 		
 		String messag = scanner.nextLine();
 		
-		messages.add(messag);
+		messages.add(myname + ": " + messag);
 	}
 	
 }

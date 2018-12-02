@@ -11,8 +11,8 @@ public class Usuarios{
 	public int age;
 	public String city;
 	public String nacionality;
-	public Community mycommunity;
-	private Messages mymessages;
+	public Community mycommunity = null;
+	private ArrayList<Messages> mymessages = new ArrayList<Messages>();
 	public ArrayList<String> mycommunities = new ArrayList<String>();
 	
 	
@@ -68,7 +68,15 @@ public class Usuarios{
 		System.out.println(age + " years\n" + city + "     " + nacionality);
 		System.out.println("Friends list:");
 		for(i = 0; i < friends.size(); i++) {
-			System.out.println(friends.get(i));
+			System.out.println("   " + friends.get(i));
+		}
+		if(mycommunity != null) {
+			System.out.println("My Community: " + mycommunity.communityname + "\n  Description: " + mycommunity.description);
+
+		}
+		System.out.println("Communities:");
+		for(i = 0; i < mycommunities.size(); i++) {
+			System.out.println("   " + mycommunities.get(i));
 		}
 	}
 	
@@ -86,19 +94,25 @@ public class Usuarios{
 		
 		int i;
 		
-		System.out.println("Type the name of the user who you wants to add to your community:");
-		
-		String newname = scanner.nextLine();
-		
-		for(i = 0; i < u.size(); i++) {
-			if(newname.equals(u.get(i).name)) {
-				mycommunity.communityusers.add(newname);
-				u.get(i).mycommunities.add(mycommunity.communityname);
-				System.out.println(newname + " add to your community!");
-			}
+		if(mycommunity != null) {
 			
+			System.out.println("Type the name of the user who you wants to add to your community:");
+			
+			String newname = scanner.nextLine();
+			
+			for(i = 0; i < u.size(); i++) {
+				if(newname.equals(u.get(i).name)) {
+					mycommunity.communityusers.add(newname);
+					u.get(i).mycommunities.add(mycommunity.communityname);
+					System.out.println(newname + " add to your community!");
+				}
+				
+			}
 		}
 		
+		else {
+			System.out.println("Ops! You haven't a community!\n");
+		}
 		
 	}
 	
@@ -109,20 +123,12 @@ public class Usuarios{
 		
 		Messages message = new Messages();
 		
-		int i;
+		int i, j;
 		
 		System.out.println("Type the name of the user who you wants to send a message:");
 		
 		String newname = scanner.nextLine();
-		
-		for(i = 0; i < u.size(); i++) {
-			
-			if(newname.equals(this.friends.get(i))) {
-				
-				message.newTalk(newname);
-				
-			}
-		}
+
 	}
 
 
