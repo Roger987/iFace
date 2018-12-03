@@ -114,11 +114,26 @@ public class iFace{
 										
 										if(accept == 1) {
 											
+											Messages message = new Messages();
+											
 											users.get(id).friends.add(users.get(id).newfriends.get(i));
 											
+											message.messagename = users.get(id).newfriends.get(i);
+											
+											users.get(id).mymessages.add(message);
+											
 											for(j = 0; j < num; j++) {
+												
 												if(users.get(id).newfriends.get(i).equals(users.get(j).name)) {
+													
 													users.get(j).friends.add(users.get(id).name);
+													
+													Messages message2 = new Messages();
+													
+													message2.messagename = users.get(id).name;
+													
+													users.get(j).mymessages.add(message2);
+													
 													System.out.println("You and " + users.get(id).newfriends.get(i) + " are friends now!");
 												}
 											}
@@ -189,6 +204,7 @@ public class iFace{
 									break;
 									
 								case 8:
+									users.get(id).PeekMessages();
 									break;
 									
 								case 9:

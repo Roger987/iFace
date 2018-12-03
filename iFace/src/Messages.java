@@ -4,23 +4,14 @@ import java.util.Scanner;
 public class Messages{
 	
 	public String messagename;
-	private ArrayList<String> messages = new ArrayList<String>();
-	
-	public ArrayList getMessages() {
-		return this.messages;
-	}
-	
-	public void newTalk(String name, String myname) {
-		
-		messagename = name;
-		
-		Scanner scanner =  new Scanner(System.in);
-		
-		System.out.println("Your message:");
-		
-		String messag = scanner.nextLine();
-		
-		messages.add(myname + ": " + messag);
+	public ArrayList<String> messages = new ArrayList<String>();
+
+	public void ShowMessages() {
+		int i;
+		System.out.println("Your messages with " + messagename);
+		for(i = 0; i < messages.size(); i++) {
+			System.out.println(messages.get(i));
+		}
 	}
 	
 }

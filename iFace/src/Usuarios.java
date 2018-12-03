@@ -12,7 +12,7 @@ public class Usuarios{
 	public String city;
 	public String nacionality;
 	public Community mycommunity = null;
-	private ArrayList<Messages> mymessages = new ArrayList<Messages>();
+	public ArrayList<Messages> mymessages = new ArrayList<Messages>();
 	public ArrayList<String> mycommunities = new ArrayList<String>();
 	
 	
@@ -121,16 +121,62 @@ public class Usuarios{
 		
 		Scanner scanner = new Scanner(System.in);
 		
-		Messages message = new Messages();
-		
 		int i, j;
+		
+		String mess = null;
 		
 		System.out.println("Type the name of the user who you wants to send a message:");
 		
 		String newname = scanner.nextLine();
+		
+		for(i = 0; i < mymessages.size(); i++) {
+			
+			if(newname.equals(mymessages.get(i).messagename)) {
+				
+				System.out.println("Your message:");
+				
+				mess = scanner.nextLine();
+				
+				this.mymessages.get(i).messages.add(this.name + ": " + mess);
+			
+			}
+			
+		}
+		
+		for(i = 0; i < u.size(); i++) {
+			if(newname.equals(u.get(i).name)) {
+				
+				for(j = 0; j < u.get(i).mymessages.size(); j++) {
+					
+					if(this.name.equals(u.get(i).mymessages.get(j).messagename)) {
+						
+						u.get(i).mymessages.get(j).messages.add(this.name + ": " + mess);
+						
+					}
+				}
+				
+			}
+		}
 
 	}
-
+	
+	public void PeekMessages() {
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		int i;
+		
+		System.out.println("Type the name of the friend you wants to read the messages:");
+		
+		String search = scanner.nextLine();
+		
+		for(i = 0; i < mymessages.size(); i++) {
+			if(search.equals(mymessages.get(i).messagename)) {
+				mymessages.get(i).ShowMessages();
+			}
+		}
+		
+	}
 
 	
 }
