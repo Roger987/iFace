@@ -24,7 +24,7 @@ public class Community{
 		
 		description = scanner.nextLine();
 		
-		System.out.println("Nice! Community created!");
+		System.out.println("\nNice! Community created!");
 		
 	}
 	
@@ -32,7 +32,7 @@ public class Community{
 		
 		int i;
 		
-		System.out.println(this.communityname.toUpperCase());
+		System.out.println("\n" + this.communityname.toUpperCase());
 		System.out.println("--------------------------\n");
 		System.out.println("Created by: " + this.creator);
 		System.out.println(this.description);

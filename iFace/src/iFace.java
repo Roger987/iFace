@@ -6,7 +6,7 @@ public class iFace{
 		
 		Scanner scanner = new Scanner(System.in);
 		
-		int input = -1, num = 0;
+		int input = -1;
 		
 		
 		System.out.println("Welcome to iFace\n");
@@ -27,10 +27,8 @@ public class iFace{
 					Usuarios user = new Usuarios();
 					
 					user.CreateNewAccount();
-					user.EditProfile();
-					user.id = num;
-					users.add(user);
-					num++;
+					user.CreateProfile();
+					users.add(user);					
 					
 					System.out.println("New account created!\n\n");
 					
@@ -122,7 +120,7 @@ public class iFace{
 											
 											users.get(id).mymessages.add(message);
 											
-											for(j = 0; j < num; j++) {
+											for(j = 0; j < users.size(); j++) {
 												
 												if(users.get(id).newfriends.get(i).equals(users.get(j).name)) {
 													
@@ -134,7 +132,7 @@ public class iFace{
 													
 													users.get(j).mymessages.add(message2);
 													
-													System.out.println("You and " + users.get(id).newfriends.get(i) + " are friends now!");
+													System.out.println("\nYou and " + users.get(id).newfriends.get(i) + " are friends now!");
 												}
 											}
 											
@@ -160,7 +158,7 @@ public class iFace{
 									
 									int flag2 = 0;
 									
-									System.out.println("Type the name of the member that you're looking for:");
+									System.out.println("\nType the name of the member that you're looking for:");
 									
 									String member = scanner.nextLine();
 									
@@ -172,7 +170,7 @@ public class iFace{
 									}
 									
 									if(flag2 == 0) {
-										System.out.println("Sorry! Not found!\n");
+										System.out.println("\nSorry! Not found!\n");
 									}
 									
 									break;
@@ -181,7 +179,7 @@ public class iFace{
 									
 									int flag3 = 0;
 									
-									System.out.println("Type the name of the community that you're looking for:");
+									System.out.println("\nType the name of the community that you're looking for:");
 									
 									String com = scanner.nextLine();
 									
@@ -193,7 +191,7 @@ public class iFace{
 									}
 									
 									if(flag3 == 0) {
-										System.out.println("Sorry! Not found!\n");
+										System.out.println("\nSorry! Not found!\n");
 									}
 									
 									break;
@@ -219,8 +217,32 @@ public class iFace{
 									
 								case 11:
 									
+									for(i = 0; i < users.size(); i++) {
+										for(j = 0; j < users.get(i).friends.size(); j++) {
+											if(users.get(id).name.equals(users.get(i).friends.get(j))) {
+												users.get(i).friends.remove(j);
+											}
+										}
+									}
+									
+									for(i = 0; i < users.size(); i++) {
+										for(j = 0; j < users.get(i).mymessages.size(); j++) {
+											if(users.get(id).name.equals(users.get(i).mymessages.get(j).messagename)) {
+												users.get(i).mymessages.remove(j);
+											}
+										}
+									}
+									
+									for(i = 0; i < users.size(); i++) {
+										for(j = 0; j < users.get(i).newfriends.size(); j++) {
+											if(users.get(id).name.equals(users.get(i).newfriends.get(j))) {
+												users.get(i).newfriends.remove(j);
+											}
+										}
+									}
+									
 									users.remove(id);
-									System.out.println("Removed from iFace!");
+									System.out.println("\nRemoved from iFace!\n");
 									inputcase2 = 12;
 									break;									
 							}

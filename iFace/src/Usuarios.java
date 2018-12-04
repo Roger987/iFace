@@ -5,7 +5,6 @@ public class Usuarios{
 	public String login;
 	public String name;
 	private String password;
-	public int id;
 	public ArrayList<String> friends = new ArrayList<String>();
 	public ArrayList<String> newfriends = new ArrayList<String>();
 	public int age;
@@ -37,7 +36,7 @@ public class Usuarios{
 	}
 	
 	
-	public void EditProfile() {
+	public void CreateProfile() {
 		
 		Scanner scanner = new Scanner(System.in);
 		
@@ -53,6 +52,53 @@ public class Usuarios{
 		
 	}
 	
+	public void EditProfile() {
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("Select the attribute you want to change:\n     1 - Age\n     2 - City\n     3 - Nacionality\n     4 - All\n");
+		
+		int editinput = scanner.nextInt();
+		scanner.nextLine();
+		
+		switch(editinput) {
+		
+			case 1:
+				System.out.println("Age:");
+				age = scanner.nextInt();
+				scanner.nextLine();
+				System.out.println("Done!");
+				break;
+			
+			case 2:
+				System.out.println("City:");
+				city = scanner.nextLine();
+				System.out.println("Done!");
+				break;
+				
+			case 3:
+				System.out.println("Nacionality:");
+				nacionality = scanner.nextLine();
+				System.out.println("Done!");
+				break;
+			
+			case 4:
+				System.out.println("Age:");
+				age = scanner.nextInt();
+				scanner.nextLine();
+				
+				System.out.println("City:");
+				city = scanner.nextLine();
+				
+				System.out.println("Nacionality:");
+				nacionality = scanner.nextLine();
+				System.out.println("Done!");
+				break;
+		
+		}
+		
+	}
+	
 	
 	public void AddFriend(String yourname) {
 		String message = yourname;
@@ -63,7 +109,7 @@ public class Usuarios{
 	
 	public void ShowProfile() {
 		int i;
-		System.out.println(name.toUpperCase());
+		System.out.println("\n" + name.toUpperCase());
 		System.out.println("------------------------------");
 		System.out.println(age + " years\n" + city + "     " + nacionality);
 		System.out.println("Friends list:");
@@ -96,7 +142,7 @@ public class Usuarios{
 		
 		if(mycommunity != null) {
 			
-			System.out.println("Type the name of the user who you wants to add to your community:");
+			System.out.println("\nType the name of the user who you wants to add to your community:");
 			
 			String newname = scanner.nextLine();
 			
@@ -104,14 +150,14 @@ public class Usuarios{
 				if(newname.equals(u.get(i).name)) {
 					mycommunity.communityusers.add(newname);
 					u.get(i).mycommunities.add(mycommunity.communityname);
-					System.out.println(newname + " add to your community!");
+					System.out.println("\n" + newname + " add to your community!");
 				}
 				
 			}
 		}
 		
 		else {
-			System.out.println("Ops! You haven't a community!\n");
+			System.out.println("\nOps! You haven't a community!\n");
 		}
 		
 	}
@@ -125,7 +171,7 @@ public class Usuarios{
 		
 		String mess = null;
 		
-		System.out.println("Type the name of the user who you wants to send a message:");
+		System.out.println("\nType the name of the user who you wants to send a message:");
 		
 		String newname = scanner.nextLine();
 		
@@ -133,7 +179,7 @@ public class Usuarios{
 			
 			if(newname.equals(mymessages.get(i).messagename)) {
 				
-				System.out.println("Your message:");
+				System.out.println("\nYour message:");
 				
 				mess = scanner.nextLine();
 				
@@ -157,6 +203,8 @@ public class Usuarios{
 				
 			}
 		}
+		
+		System.out.println("\nDone!");
 
 	}
 	
@@ -164,16 +212,21 @@ public class Usuarios{
 		
 		Scanner scanner = new Scanner(System.in);
 		
-		int i;
+		int i, flag = 0;
 		
-		System.out.println("Type the name of the friend you wants to read the messages:");
+		System.out.println("\nType the name of the friend you wants to read the messages:");
 		
 		String search = scanner.nextLine();
 		
 		for(i = 0; i < mymessages.size(); i++) {
 			if(search.equals(mymessages.get(i).messagename)) {
 				mymessages.get(i).ShowMessages();
+				flag++;
 			}
+		}
+		
+		if(flag == 0) {
+			System.out.println("Sorry! Not found!");
 		}
 		
 	}
