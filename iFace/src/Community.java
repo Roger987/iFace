@@ -35,7 +35,7 @@ public class Community{
 		System.out.println("\n" + this.communityname.toUpperCase());
 		System.out.println("--------------------------\n");
 		System.out.println("Created by: " + this.creator);
-		System.out.println(this.description);
+		System.out.println("Description: " + this.description);
 		System.out.println("Members:");
 		for(i = 0; i < communityusers.size(); i++) {
 			System.out.println("   " + communityusers.get(i));

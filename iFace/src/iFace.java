@@ -241,6 +241,17 @@ public class iFace{
 										}
 									}
 									
+									
+									for(i = 0; i < users.size(); i++) {
+										if(users.get(i).mycommunity != null) {
+											for(j = 0; j < users.get(i).mycommunity.communityusers.size(); j++) {
+												if(users.get(id).name.equals(users.get(i).mycommunity.communityusers.get(j))) {
+													users.get(i).mycommunity.communityusers.remove(j);
+												}
+											}
+										}
+									}
+									
 									users.remove(id);
 									System.out.println("\nRemoved from iFace!\n");
 									inputcase2 = 12;
